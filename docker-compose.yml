@@ -9,3 +9,17 @@ services:
       - ./.data/db:/var/lib/mysql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
+  rails:
+    build: rails/
+    command: /bin/bash -c "rm -f tmp/pids/server.pid && bin/dev"
+    volumes:
+      - ./back:/app:cached
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
