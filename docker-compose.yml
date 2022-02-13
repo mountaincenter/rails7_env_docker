@@ -11,7 +11,7 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
   rails:
     build: rails/
-    command: /bin/bash -c "rm -f tmp/pids/server.pid && bin/dev"
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./back:/app:cached
     depends_on:
